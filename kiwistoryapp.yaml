@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kiwistory
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kiwistory
+  template:
+    metadata:
+      labels:
+        app: kiwistory
+    spec:
+      containers:
+      - name: kiwistory
+        image: gameapp.azurecr.io/app/kiwistory:v1 # image in ACR
+        resources: {}# include resources for better scheduling
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kiwistory
+spec:
+  ports:
+  - port: 80 # Access on service port 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: kiwistory
+  type: LoadBalancer # External Access via load balancer service
