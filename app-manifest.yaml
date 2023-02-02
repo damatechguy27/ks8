@@ -13,7 +13,7 @@ spec:
         app: <appname>
     spec:
       containers:
-      - name: kiwistory
+      - name: <appname>
         image: <acrname>.azurecr.io/app/<appname>:v1 # image in ACR
         resources: {}# include resources for better scheduling
         ports:
