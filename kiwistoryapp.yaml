@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kiwistory
+  name: <appname>
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: kiwistory
+      app: <appname>
   template:
     metadata:
       labels:
-        app: kiwistory
+        app: <appname>
     spec:
       containers:
       - name: kiwistory
-        image: tfgameapp.azurecr.io/app/kiwistory:v1 # image in ACR
+        image: <acrname>.azurecr.io/app/<appname>:v1 # image in ACR
         resources: {}# include resources for better scheduling
         ports:
         - containerPort: 80
@@ -29,5 +29,5 @@ spec:
     protocol: TCP
     targetPort: 80
   selector:
-    app: kiwistory
+    app: <appname>
   type: LoadBalancer # External Access via load balancer service
